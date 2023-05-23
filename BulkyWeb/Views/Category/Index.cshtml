@@ -1,16 +1,57 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@model List<Category>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Category Page";
 }
 
-<div>
-    <h1>Category View</h1>
-    <h2>Category List</h2>
-    <ul>
-        <li>List Item 1</li>
-        <li>List Item 2</li>
-        <li>List Item 3</li>
-    </ul>
+<div class="container">
+    <div class="row pb-3">
+        <div class="col-6">
+            <h1>Category List</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-Action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>  Create New Category
+            </a>
+        </div>
+    </div>
+    
 </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Display Order
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+            {
+               <tr>
+                   <td>@obj.Name</td>
+                   <td>@obj.DisplayOrder</td>
+                   <td>
+                       <div class="w-75" role="group">
+                        <a asp-route-id="@obj.Id" asp-controller="Category" asp-action="Edit" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"> </i>Edit
+                        </a>
+                        <a asp-controller="Category" asp-action="Delete" class="btn btn-danger mx-2">
+                            <i class="bi bi-pencil-square"> </i>Delete
+                        </a>
+                       </div>
+                   </td>
+               </tr> 
+            }
+        </tbody> 
+        
+
+    </table>
+
