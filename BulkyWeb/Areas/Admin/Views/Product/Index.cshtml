@@ -1,20 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Product>
 
-@model List<Product>
-@{
-    ViewData["Title"] = "Product Page";
-}
-
-
-<div class="card shadow-border-0 mt-4">
+<div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white py-2">Product List</h2>
             </div>
-
         </div>
     </div>
     <div class="card-body p-4">
@@ -22,74 +13,29 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Product" asp-Action="Create" class="btn btn-primary">
+                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
                     <i class="bi bi-plus-circle"></i>  Create New Product
                 </a>
             </div>
         </div>
-
-
-
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    <th>
-                        ISBN
-                    </th>
-                    <th>
-                        Author
-                    </th>
-                    <th>
-                        List Price
-                    </th>
-                    <th>
-                        Price
-                    </th>
-                    <th>
-                        Price50
-                    </th>
-                    <th>
-                        Price100
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var obj in Model.OrderBy(u => u.ListPrice))
-                {
+        <div class="table-responsive">
+            <table id="tblData" class="table table-bordered table-striped" width="100%">
+                <thead>
                     <tr>
-                        <td>@obj.Title</td>
-                        <td>@obj.Description</td>
-                        <td>@obj.ISBN</td>
-                        <td>@obj.Author</td>
-                        <td>@obj.ListPrice</td>
-                        <td>@obj.Price</td>
-                        <td>@obj.Price50</td>
-                        <td>@obj.Price100</td>
-                        <td>
-                            <div class="w-75" role="group">
-                                <a asp-route-id="@obj.Id" asp-controller="Product" asp-action="Edit" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pencil-square"> </i>Edit
-                                </a>
-                                <a asp-route-id="@obj.Id" asp-controller="Product" asp-action="Delete" class="btn btn-danger mx-2">
-                                    <i class="bi bi-pencil-square"> </i>Delete
-                                </a>
-                            </div>
-                        </td>
+                        <th>Title</th>
+                        <th>ISBN</th>
+                        <th>Price</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-
-
-        </table>
+                </thead>
+                
+            </table>
+        </div>
+        
     </div>
 </div>
-
-<div class="container">
-    
-</div>
+@section Scripts{
+     <script src="~/js/product.js"></script>
+}
