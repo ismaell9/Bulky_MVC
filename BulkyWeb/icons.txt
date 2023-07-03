@@ -1,0 +1,6 @@
+edit
+<i class="fa-solid fa-pen-nib"></i>&nbsp;
+delete
+<i class="fa-solid fa-trash"></i>&nbsp;
+add
+<i class="fa-solid fa-plus"></i>&nbsp;
