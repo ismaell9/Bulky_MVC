@@ -30,5 +30,8 @@ namespace BulkyBook.Utility
         // Sessions
         public const string SessionCart = "SessionShoppingCart";
 
+        public const int ImgWidth = 274;
+        public const int ImgHeight = 329;
+
     }
 }

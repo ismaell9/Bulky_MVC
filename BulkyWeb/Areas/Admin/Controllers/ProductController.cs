@@ -5,10 +5,11 @@ using BulkyBook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Stripe;
 using System.Data;
-using Product = BulkyBook.Models.Product;
-
+using System.Drawing.Drawing2D;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.PixelFormats;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -85,7 +86,10 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                         using (var fileStream = new FileStream(Path.Join(finalPath, fileName), FileMode.Create))
                         {
                             file.CopyTo(fileStream);
+                            
                         }
+                        
+                        ResizeImage(finalPath + @"\" + fileName, finalPath + @"\" + fileName, SD.ImgWidth, SD.ImgHeight);
                         //productVM.Product.ImageURL = @"\images\product\" + fileName;
                         ProductImage productImage = new()
                         {
@@ -180,5 +184,14 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return Json(new { success = true, message = "Delete successful" });
         }
         #endregion
+
+        public void ResizeImage(string imagePath, string outputPath, int newWidth, int newHeight)
+        {
+            using (Image<Rgba32> image = Image.Load<Rgba32>(imagePath))
+            {
+                image.Mutate(x => x.Resize(newWidth, newHeight));
+                image.Save(outputPath);
+            }
+        }
     }
 }
