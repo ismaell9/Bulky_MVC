@@ -56,6 +56,9 @@
                                     <li class="nav-item">
                                         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create User</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Manage User</a>
+                                    </li>
                                 </ul>
                             </li>
                         }
@@ -92,7 +95,10 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/9ua2ee3z3ty9unr3nbf5qe8avd9ogx5vak4wlggkov7qxdjq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/9ua2ee3z3ty9unr3nbf5qe8avd9ogx5vak4wlggkov7qxdjq/tinymce/6/tinymce.min.js" referrerpolicy="origin"><script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script></script>
+    
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
